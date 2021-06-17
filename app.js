@@ -1,3 +1,6 @@
+const btn = document.querySelector("#btn");
+let mostrarRes = false;
+
 let classifier;
 // Model URL
 let imageModelURL = 'https://teachablemachine.withgoogle.com/models/gX2tIniMo/';
@@ -34,7 +37,9 @@ function draw() {
   fill(255);
   textSize(16);
   textAlign(CENTER);
-  text(label, width / 2, height - 4);
+  if( mostrarRes ){
+    text(label, width / 2, height - 4);
+  }
 }
 
 // Get a prediction for the current video frame
@@ -56,3 +61,10 @@ function gotResult(error, results) {
   // Classifiy again!
   classifyVideo();
 }
+
+btn.addEventListener('click',()=>{
+  mostrarRes = true;
+  setTimeout(()=>{
+    mostrarRes = false;
+  },3000);
+});
